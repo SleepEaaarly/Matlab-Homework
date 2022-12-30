@@ -122,20 +122,20 @@ res_point = zeros(4,2);
 for i = 1:4
     pp = p(i,:);
     if pp(1) < x_mean && pp(2) < y_mean
-        res_point(3,:) = p(i,:)+20;
+        res_point(3,:) = p(i,:)+10;
     end
     if pp(1) > x_mean && pp(2) > y_mean
-        res_point(1,:) = p(i,:)-20;
+        res_point(1,:) = p(i,:)-10;
     end
     if pp(1) < x_mean && pp(2) > y_mean
         res_point(2,:) = p(i,:);
-        res_point(2,1) = p(i,1) + 20;
-        res_point(2,2) = p(i,2) - 20;
+        res_point(2,1) = p(i,1) + 10;
+        res_point(2,2) = p(i,2) - 10;
     end
     if pp(1) > x_mean && pp(2) < y_mean
         res_point(4,:) = p(i,:);
-        res_point(4,1) = p(i,1) - 20;
-        res_point(4,2) = p(i,2) + 20;
+        res_point(4,1) = p(i,1) - 10;
+        res_point(4,2) = p(i,2) + 10;
     end
 end
 
