@@ -1,5 +1,5 @@
-function [Ans] = parsestr(nowstate)
-Ans = int2str(nowstate(:)');
-return;
+function [ret] = parsestr(nowstate)
+    ret = int2str(nowstate(:)');
+    return;
 end
 
