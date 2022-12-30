@@ -9,17 +9,22 @@ function [outputArg] = cube_map(answ,rgb)
     RGB = load("color_7.txt");
 
     mapid = zeros(1,6);
+    visit = zeros(1,6);
     for i = 1:6
         % maxc = veccos(vec(i, :), rgb(1, :));
         maxc=abss(vec(i, :), rgb(1, :));
         maxj = 1;
-        for j = 2:7
+        for j = 2:6
+            if visit(j)>0
+                continue;
+            end
             if maxc < abss(vec(i,:), rgb(j,:))
                 maxj = j;
                 maxc = abss(vec(i,:), rgb(j,:));
             end
         end
         mapid(i) = maxj;
+        visit(maxj) = 1;
     end
 
     rgb_convert=[];
