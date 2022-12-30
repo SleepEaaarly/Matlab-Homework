@@ -9,7 +9,7 @@ function [face_info] = color_detection()
 
     % show the original images
     figure(1)
-%    imshow(images)
+    % imshow(images)
 
     % convert rgb to yux space
     labs=rgb2ycbcr(images);
@@ -17,16 +17,16 @@ function [face_info] = color_detection()
     lab_images=im2single(reshape_labs);
 
     % kmeans for classify
-    labels=imsegkmeans(lab_images,7,NumAttempts=3);
+    labels=imsegkmeans(lab_images,6,NumAttempts=3);
 
     % show the first-processed images
     figure(2)
-%    imshow(labels,[]);
+    % imshow(labels,[]);
 
     % initiate for coloring
-    color = zeros(7,3);
+    color = zeros(6,3);
     ids = double(images);
-    centers = double(zeros(7,3,'double'));
+    centers = double(zeros(6,3,'double'));
 
     % initiate for channels
     R=zeros(size(labels,1),size(labels,2));
@@ -45,7 +45,7 @@ function [face_info] = color_detection()
     end
 
     % set the color of a classified label as the mean of these seeds
-    for i=1:7
+    for i=1:6
         for j=1:3
             mask=labels==i;
             tmp=ids(:,:,j);
@@ -65,7 +65,7 @@ function [face_info] = color_detection()
     % show the final_processed images
     map=cat(3,R,G,B);
     figure(3);
-%    imshow(uint8(map))  
+    % imshow(uint8(map))  
 
     answ=[];
     for i = 1:6
@@ -84,7 +84,7 @@ function [face_info] = color_detection()
        
     % save color info
     f2 = fopen('color_7.txt','w');
-    for i = 1:7
+    for i = 1:6
         new_i=i;
         for j = 1:3
             fprintf(f2, '%f ', color(new_i, j));
